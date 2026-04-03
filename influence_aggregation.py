@@ -5,9 +5,9 @@
 @Project:     Structured Reasoning Aggregation
 @File:        influence_aggregation.py
 @Author:      Rui Xu
-@Contact:     zaicyxu@gmail.com
 @Time:        Mar/2026
-@Description: Hierarchical Multi-channel Reliability Inference with Interaction-aware Reweighting
+@Version:     0.5.2
+@Description: Adaptive Hierarchical Multi-channel Inference with Feedback Control
 """
 
 import numpy as np
@@ -16,18 +16,26 @@ import random
 
 class Stage2Processor:
     def __init__(self, extractor):
-        """
-        Initialize the processor.
-        """
         self.extractor = extractor
 
-    def _extract_units(self, answer_pool):
+    # Control Parsing
+    def _parse_control(self, control_signal):
         """
-        Convert raw answers into structured units.
+        Extract Stage2 control parameters.
+        """
+        if not control_signal or "stage2" not in control_signal:
+            return 0.5, 0.5, 0.5  # default
 
-        Each answer is decomposed into fact, reasoning, and result components.
-        A unique id is assigned to preserve traceability across channels.
-        """
+        ctrl = control_signal["stage2"]
+
+        return (
+            ctrl.get("rejection_strength", 0.5),
+            ctrl.get("reweight_strength", 0.5),
+            ctrl.get("coupling_strength", 0.5),
+        )
+
+    # Structure Extraction
+    def _extract_units(self, answer_pool):
         units = []
         for idx, item in enumerate(answer_pool):
             s = self.extractor(item["answer"])
@@ -40,14 +48,7 @@ class Stage2Processor:
         return units
 
     def _build_sets(self, units):
-        """
-        Flatten structured units into three independent sets:
-        fact set, reasoning set, and result set.
-
-        Each element retains a reference (uid) to its original unit.
-        """
         F, R, Y = [], [], []
-
         for u in units:
             for f in u["fact"]:
                 F.append({"text": f, "uid": u["id"]})
@@ -59,23 +60,14 @@ class Stage2Processor:
 
         return F, R, Y
 
+    # Interaction
     def _sim(self, a, b):
-        """
-        Compute similarity between two text segments.
-        Uses simple token overlap as a proxy for semantic similarity.
-        """
         return len(set(a.split()) & set(b.split()))
 
     def _agree(self, a, b):
-        """
-        Compute agreement between two result strings.
-        """
         return 1.0 if a == b else -1.0
 
     def _build_M(self, dataset, mode):
-        """
-        Construct pairwise interaction matrix.
-        """
         n = len(dataset)
         M = np.zeros((n, n))
 
@@ -90,27 +82,23 @@ class Stage2Processor:
         return M
 
     def _energy(self, M):
-        """
-        Compute energy score for each element.
-
-        Energy is defined as the sum of pairwise interactions,
-        representing global consistency within the set.
-        """
         return M.sum(axis=1)
 
-    def _rejection(self, data, E):
+    # Controlled Rejection
+    def _rejection(self, data, E, rejection_strength):
         """
-        Perform energy-based rejection sampling.
-
-        Elements are probabilistically accepted based on normalized
-        energy scores, approximating a target distribution.
+        Adaptive rejection sampling.
+        rejection_strength controls sharpness of acceptance distribution.
         """
         E = E - np.max(E)
         p = np.exp(E)
         p /= p.sum()
 
-        accept = np.minimum(1.0, p * len(data))
+        gamma = 1 + rejection_strength * 2  # sharpening factor
+        p = p ** gamma
+        p /= p.sum()
 
+        accept = np.minimum(1.0, p * len(data))
         new_data = []
         idx = []
 
@@ -121,29 +109,23 @@ class Stage2Processor:
 
         return new_data, idx
 
-    def _reweight_base(self, M):
+    # Adaptive Reweight
+    def _reweight_base(self, M, reweight_strength):
         """
-        Perform graph-based weight propagation.
-        The interaction matrix is normalized row-wise and used
-        as a transition operator. Weights are iteratively updated,
-        similar to attention or message passing.
+        Graph propagation with adaptive depth.
         """
         row_sum = np.abs(M).sum(axis=1, keepdims=True) + 1e-8
         A = M / row_sum
-
         w = np.ones(M.shape[0]) / M.shape[0]
+        steps = int(1 + reweight_strength * 4)
 
-        for _ in range(2):
+        for _ in range(steps):
             w = A.T @ w
 
         return w
 
+    # Cross Influence
     def _cross_influence(self, src_set, src_w, tgt_set):
-        """
-        Compute cross-channel influence.
-        Influence is propagated based on shared unit ids (uid),
-        allowing weak coupling between channels.
-        """
         influence = np.zeros(len(tgt_set))
 
         for i, tgt in enumerate(tgt_set):
@@ -154,17 +136,14 @@ class Stage2Processor:
         return influence
 
     def _softmax(self, x):
-        """
-        Apply softmax normalization.
-        Converts arbitrary scores into a probability distribution.
-        """
         x = x - np.max(x)
         e = np.exp(x)
         return e / e.sum()
 
-    def _process_channel(self, dataset, mode):
+    # Channel Processing
+    def _process_channel(self, dataset, mode, r_strength, rw_strength):
         """
-        Full pipeline for a single channel.
+        Full controlled pipeline for one channel.
         """
         if len(dataset) == 0:
             return [], np.array([])
@@ -172,21 +151,18 @@ class Stage2Processor:
         M = self._build_M(dataset, mode)
         E = self._energy(M)
 
-        dataset, idx = self._rejection(dataset, E)
+        dataset, _ = self._rejection(dataset, E, r_strength)
 
         if len(dataset) == 0:
             return [], np.array([])
 
         M = self._build_M(dataset, mode)
-        w = self._reweight_base(M)
+        w = self._reweight_base(M, rw_strength)
 
         return dataset, w
 
+    # Aggregation
     def _aggregate(self, Y, w):
-        """
-        Aggregate result set into pseudo ground truth.
-        Performs weighted voting over candidate results.
-        """
         score = {}
         for item, weight in zip(Y, w):
             key = item["text"]
@@ -196,9 +172,6 @@ class Stage2Processor:
         return best, score
 
     def _confidence(self, wf, wr, wy):
-        """
-        Compute overall confidence.
-        """
         def ent(w):
             if len(w) == 0:
                 return 1
@@ -206,37 +179,40 @@ class Stage2Processor:
 
         return float((1 - ent(wf) + 1 - ent(wr) + 1 - ent(wy)) / 3)
 
-    def process(self, answer_pool):
+    # Main Pipeline
+    def process(self, answer_pool, control_signal=None):
         """
-        Full Stage2 pipeline.
+        Stage2 with adaptive control input.
         """
+        # parse control
+        r_strength, rw_strength, c_strength = self._parse_control(control_signal)
+
+        # extract
         units = self._extract_units(answer_pool)
         F, R, Y = self._build_sets(units)
 
         # independent inference
-        F, wf = self._process_channel(F, "sim")
-        R, wr = self._process_channel(R, "sim")
-        Y, wy = self._process_channel(Y, "agree")
+        F, wf = self._process_channel(F, "sim", r_strength, rw_strength)
+        R, wr = self._process_channel(R, "sim", r_strength, rw_strength)
+        Y, wy = self._process_channel(Y, "agree", r_strength, rw_strength)
 
         if len(Y) == 0:
             return {}
 
-        # weak coupling coefficients
-        lambda_f = 0.3
-        lambda_r = 0.3
-        lambda_y = 0.5
+        # dynamic coupling
+        lambda_f = 0.2 + 0.5 * c_strength
+        lambda_r = 0.2 + 0.5 * c_strength
+        lambda_y = 0.3 + 0.7 * c_strength
 
-        # cross-channel influence
         inf_F = self._cross_influence(Y, wy, F)
         inf_R = self._cross_influence(F, wf, R)
         inf_Y = self._cross_influence(F, wf, Y) + self._cross_influence(R, wr, Y)
 
-        # adjust weights
         wf = self._softmax(wf + lambda_f * inf_F)
         wr = self._softmax(wr + lambda_r * inf_R)
         wy = self._softmax(wy + lambda_y * inf_Y)
 
-        # final aggregation
+        # aggregation
         result, dist = self._aggregate(Y, wy)
         conf = self._confidence(wf, wr, wy)
 

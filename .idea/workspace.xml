@@ -5,17 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3bc8bdcb-da73-41e1-a41d-56360287f764" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/Structured Reasoning Aggregation.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/configuration.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/influence_aggregation.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rea_fuser.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/score_fusion.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/feedback_controller.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/influence_aggregation.py" beforeDir="false" afterPath="$PROJECT_DIR$/influence_aggregation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rea_fuser.py" beforeDir="false" afterPath="$PROJECT_DIR$/rea_fuser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/score_fusion.py" beforeDir="false" afterPath="$PROJECT_DIR$/score_fusion.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +38,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "D:/Code/MH-Med",
     "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
   }

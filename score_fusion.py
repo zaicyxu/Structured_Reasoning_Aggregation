@@ -7,7 +7,8 @@
 @Author:      Rui Xu
 @Contact:     zaicyxu@gmail.com
 @Time:        Mar/2026
-@Description: Evaluation-driven Signal Projection and Reliability-Quality Fusion for Final Decision Making
+@Version:     0.3.2
+@Description: Evaluation-driven Signal Projection and Reliability-Quality Fusion with Full Signal Preservation
 """
 
 import numpy as np
@@ -16,46 +17,47 @@ import json
 
 class Stage3Processor:
     def __init__(self, llm_call):
+        """
+        Initialize Stage3 processor.
+        """
         self.llm_call = llm_call
 
-    # Prompt Engineering
     def _build_prompt(self, answer):
         """
-        Construct evaluation prompt with strict scoring rubric.
-        The LLM is required to output structured JSON.
+        Construct the evaluation prompt.
         """
         prompt = f"""
                 You are an expert evaluator.
-                
+
                 Evaluate the following answer based on FOUR criteria:
-                
+
                 1. Validity (0-5)
                 - 5: Fully factually correct
                 - 3: Mostly correct with minor errors
                 - 1: Major factual issues
                 - 0: Completely incorrect
-                
+
                 2. Completeness (0-5)
                 - 5: Fully addresses the question
                 - 3: Partially complete
                 - 1: Missing key parts
                 - 0: Severely incomplete
-                
+
                 3. Consistency (0-5)
                 - 5: Fully logically consistent
                 - 3: Minor inconsistencies
                 - 1: Major contradictions
                 - 0: Completely inconsistent
-                
+
                 4. Utility (0-5)
                 - 5: Highly useful and actionable
                 - 3: Moderately useful
                 - 1: Limited usefulness
                 - 0: Not useful
-                
+
                 Answer:
                 \"\"\"{answer}\"\"\"
-                
+
                 Output ONLY JSON in the format:
                 {{
                   "validity": int,
@@ -66,20 +68,20 @@ class Stage3Processor:
                 """
         return prompt
 
-    # LLM Evaluation
     def _evaluate(self, candidates):
         """
-        Call LLM to generate evaluation signals Z.
+        Evaluate all candidate answers using the LLM.
         """
         Z = []
 
         for ans in candidates:
             prompt = self._build_prompt(ans)
             response = self.llm_call(prompt)
+
             try:
                 z = json.loads(response)
             except:
-                # fallback if parsing fails
+                # Fallback ensures robustness if LLM output is malformed
                 z = {
                     "validity": 0,
                     "completeness": 0,
@@ -88,19 +90,21 @@ class Stage3Processor:
                 }
 
             Z.append(z)
+
         return Z
 
-    # Weight Normalization
     def _softmax(self, w):
+        """
+        Normalize raw weights into a probability distribution.
+        """
         w = np.array(w)
         w = w - np.max(w)
         e = np.exp(w)
         return e / np.sum(e)
 
-    # Signal Projection
     def _project(self, z):
         """
-        Project multi-dimensional signal into scalar quality score.
+        Project multi-dimensional evaluation signal into scalar quality score.
         """
         vec = np.array([
             z["validity"],
@@ -109,73 +113,84 @@ class Stage3Processor:
             z["utility"]
         ]) / 5.0
 
-        # uncertainty = variance
+        # uncertainty estimation
         uncertainty = np.var(vec)
 
-        # weighted linear projection
+        # weighted aggregation
         W = np.array([0.3, 0.25, 0.25, 0.2])
         base_score = np.dot(W, vec)
 
         # non-linear transformation
         score = np.tanh(base_score)
 
-        # uncertainty penalty
+        # penalize uncertainty
         score = score * (1 - uncertainty)
 
-        return score
+        return score, uncertainty
 
-    # Aggregation
     def _aggregate(self, W, Z):
         """
-        Fuse reliability (W) and quality (Z).
-        Uses multiplicative fusion with exponents.
+        Fuse reliability weights and quality signals.
+
+        This implements multiplicative fusion:
+        score = w^alpha * q^beta
         """
         scores = []
+        qualities = []
+        uncertainties = []
+
+        alpha = 0.6
+        beta = 0.8
 
         for w, z in zip(W, Z):
-            q = self._project(z)
-
-            # fusion (tunable)
-            alpha = 0.6  # reliability importance
-            beta = 0.8   # quality importance
+            q, u = self._project(z)
 
             score = (w ** alpha) * (q ** beta)
+
             scores.append(score)
+            qualities.append(q)
+            uncertainties.append(u)
 
-        return np.array(scores)
+        return np.array(scores), qualities, uncertainties
 
+    def _rank(self, candidates, scores, W, Z, Q, U, top_k=3):
+        """
+        Rank candidates and preserve full signal information.
+        """
+        idx = np.argsort(scores)[::-1]
 
-    # Ranking
-    def _rank(self, candidates, scores, top_k=3):
-        idx = np.argsort(scores)[::-1][:top_k]
-
-        results = []
+        full = []
         for i in idx:
-            results.append({
+            full.append({
                 "answer": candidates[i],
-                "score": float(scores[i])
+                "score": float(scores[i]),
+                "weight": float(W[i]),
+                "signal": Z[i],
+                "quality": float(Q[i]),
+                "uncertainty": float(U[i])
             })
 
-        return results
+        return full[:top_k], full
 
-    # Main Pipeline
     def process(self, candidates, weights):
         """
-            Top-K ranked answers
+        Execute full Stage3 pipeline.
         """
         if len(candidates) == 0:
-            return []
+            return {}
 
-        # normalize weights
         W = self._softmax(weights)
-
-        # LLM evaluation
         Z = self._evaluate(candidates)
 
-        # aggregation
-        scores = self._aggregate(W, Z)
+        scores, Q, U = self._aggregate(W, Z)
 
-        # ranking
-        results = self._rank(candidates, scores, top_k=3)
+        topk, full = self._rank(candidates, scores, W, Z, Q, U)
 
-        return results
+        return {
+            "ranking": topk,
+            "full": full,
+            "global": {
+                "weights": W.tolist(),
+                "signals": Z
+            }
+        }
