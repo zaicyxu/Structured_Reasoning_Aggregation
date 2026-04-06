@@ -6,25 +6,38 @@
 @File:        influence_aggregation.py
 @Author:      Rui Xu
 @Time:        Mar/2026
-@Version:     0.5.2
-@Description: Adaptive Hierarchical Multi-channel Inference with Feedback Control
+@Version:     0.6.1
+@Description: Fully Integrated Hierarchical Multi-channel Inference with LLM-based Structuring and Feedback Control
 """
 
 import numpy as np
 import random
+import json
 
 
 class Stage2Processor:
-    def __init__(self, extractor):
-        self.extractor = extractor
+    """
+    Stage2 Processor:
+    - LLM-based structured decomposition
+    - Hierarchical (Fact / Reasoning / Result) inference
+    - Controlled rejection sampling
+    - Graph-based reweighting
+    - Cross-channel weak coupling
+    """
 
-    # Control Parsing
+    def __init__(self, llm_call):
+        """
+        Initialize with LLM interface.
+        """
+        self.llm_call = llm_call
+
+    # Control Parsing (Stage4)
     def _parse_control(self, control_signal):
         """
-        Extract Stage2 control parameters.
+        Extract adaptive parameters from Stage4.
         """
         if not control_signal or "stage2" not in control_signal:
-            return 0.5, 0.5, 0.5  # default
+            return 0.5, 0.5, 0.5
 
         ctrl = control_signal["stage2"]
 
@@ -34,40 +47,98 @@ class Stage2Processor:
             ctrl.get("coupling_strength", 0.5),
         )
 
-    # Structure Extraction
+    # LLM structured extraction
+    def _build_extraction_prompt(self, answer):
+        """
+        Build strict prompt for structured decomposition.
+
+        Forces LLM to output JSON with:
+        fact / reasoning / result
+        """
+        return f"""
+        You are a structured reasoning parser.
+
+        Decompose the following answer into THREE components:
+
+        1. Facts:
+        - Objective factual statements only
+
+        2. Reasoning:
+        - Logical steps and inference process
+
+        3. Result:
+        - Final concise conclusion
+
+        Answer:
+        \"\"\"{answer}\"\"\"
+
+        Output ONLY JSON:
+        {{
+            "fact": [str],
+            "reasoning": [str],
+            "result": str
+        }}
+        """
+
     def _extract_units(self, answer_pool):
+        """
+        Perform LLM-based structured extraction.
+        """
         units = []
+
         for idx, item in enumerate(answer_pool):
-            s = self.extractor(item["answer"])
+            prompt = self._build_extraction_prompt(item["answer"])
+            response = self.llm_call(prompt)
+            try:
+                parsed = json.loads(response)
+            except:
+                parsed = {"fact": [], "reasoning": [], "result": ""}
+
             units.append({
                 "id": idx,
-                "fact": s.get("fact", []),
-                "reasoning": s.get("reasoning", []),
-                "result": s.get("result", "")
+                "fact": parsed.get("fact", []),
+                "reasoning": parsed.get("reasoning", []),
+                "result": parsed.get("result", "")
             })
+
         return units
 
+    # Build channel set
     def _build_sets(self, units):
+        """
+        Flatten units into three independent sets.
+        """
         F, R, Y = [], [], []
+
         for u in units:
             for f in u["fact"]:
                 F.append({"text": f, "uid": u["id"]})
 
             for r in u["reasoning"]:
                 R.append({"text": r, "uid": u["id"]})
-
             Y.append({"text": u["result"], "uid": u["id"]})
 
         return F, R, Y
 
-    # Interaction
+    # Similarity / Agreement
     def _sim(self, a, b):
-        return len(set(a.split()) & set(b.split()))
+        """
+        Compute normalized similarity (Jaccard).
+        """
+        sa, sb = set(a.split()), set(b.split())
+        return len(sa & sb) / (len(sa | sb) + 1e-8)
 
     def _agree(self, a, b):
+        """
+        Binary agreement for result comparison.
+        """
         return 1.0 if a == b else -1.0
 
+    # Interaction Martix
     def _build_M(self, dataset, mode):
+        """
+        Construct pairwise interaction matrix.
+        """
         n = len(dataset)
         M = np.zeros((n, n))
 
@@ -75,57 +146,67 @@ class Stage2Processor:
             for j in range(n):
                 if i == j:
                     continue
+
                 if mode == "sim":
                     M[i, j] = self._sim(dataset[i]["text"], dataset[j]["text"])
                 else:
                     M[i, j] = self._agree(dataset[i]["text"], dataset[j]["text"])
+
         return M
 
     def _energy(self, M):
+        """
+        Compute energy score for each element.
+        Represents global consistency.
+        """
         return M.sum(axis=1)
 
-    # Controlled Rejection
+    # Rejection sampling
     def _rejection(self, data, E, rejection_strength):
         """
         Adaptive rejection sampling.
-        rejection_strength controls sharpness of acceptance distribution.
         """
         E = E - np.max(E)
         p = np.exp(E)
         p /= p.sum()
 
-        gamma = 1 + rejection_strength * 2  # sharpening factor
+        # sharpen distribution
+        gamma = 1 + rejection_strength * 3
         p = p ** gamma
         p /= p.sum()
 
-        accept = np.minimum(1.0, p * len(data))
+        accept_prob = np.minimum(1.0, p * len(data))
         new_data = []
-        idx = []
 
         for i in range(len(data)):
-            if random.random() < accept[i]:
+            if random.random() < accept_prob[i]:
                 new_data.append(data[i])
-                idx.append(i)
 
-        return new_data, idx
+        return new_data
 
-    # Adaptive Reweight
-    def _reweight_base(self, M, reweight_strength):
+    # Graph reweighting
+    def _reweight(self, M, reweight_strength):
         """
-        Graph propagation with adaptive depth.
+        Graph-based message passing.
+        Depth controlled by reweight_strength.
         """
         row_sum = np.abs(M).sum(axis=1, keepdims=True) + 1e-8
         A = M / row_sum
+
         w = np.ones(M.shape[0]) / M.shape[0]
-        steps = int(1 + reweight_strength * 4)
+
+        steps = int(1 + reweight_strength * 5)
 
         for _ in range(steps):
             w = A.T @ w
 
         return w
 
-    # Cross Influence
+    # Cross-channel coupline
     def _cross_influence(self, src_set, src_w, tgt_set):
+        """
+        Propagate influence across channels via shared uid.
+        """
         influence = np.zeros(len(tgt_set))
 
         for i, tgt in enumerate(tgt_set):
@@ -136,14 +217,17 @@ class Stage2Processor:
         return influence
 
     def _softmax(self, x):
+        """
+        Standard softmax normalization.
+        """
         x = x - np.max(x)
         e = np.exp(x)
-        return e / e.sum()
+        return e / np.sum(e)
 
-    # Channel Processing
+    # Signal channel pipeline
     def _process_channel(self, dataset, mode, r_strength, rw_strength):
         """
-        Full controlled pipeline for one channel.
+        Full pipeline for one channel.
         """
         if len(dataset) == 0:
             return [], np.array([])
@@ -151,19 +235,23 @@ class Stage2Processor:
         M = self._build_M(dataset, mode)
         E = self._energy(M)
 
-        dataset, _ = self._rejection(dataset, E, r_strength)
+        dataset = self._rejection(dataset, E, r_strength)
 
         if len(dataset) == 0:
             return [], np.array([])
 
         M = self._build_M(dataset, mode)
-        w = self._reweight_base(M, rw_strength)
+        w = self._reweight(M, rw_strength)
 
         return dataset, w
 
     # Aggregation
     def _aggregate(self, Y, w):
+        """
+        Aggregate result channel into pseudo ground truth.
+        """
         score = {}
+
         for item, weight in zip(Y, w):
             key = item["text"]
             score[key] = score.get(key, 0) + weight
@@ -171,24 +259,30 @@ class Stage2Processor:
         best = max(score.items(), key=lambda x: x[1])[0]
         return best, score
 
+    # Confidence
     def _confidence(self, wf, wr, wy):
-        def ent(w):
+        """
+        Compute confidence using entropy.
+        """
+        def entropy(w):
             if len(w) == 0:
                 return 1
             return -np.sum(w * np.log(w + 1e-8)) / np.log(len(w))
 
-        return float((1 - ent(wf) + 1 - ent(wr) + 1 - ent(wy)) / 3)
+        return float((1 - entropy(wf) + 1 - entropy(wr) + 1 - entropy(wy)) / 3)
 
-    # Main Pipeline
+    # Main pipeline
     def process(self, answer_pool, control_signal=None):
         """
-        Stage2 with adaptive control input.
+        Full Stage2 pipeline.
         """
         # parse control
         r_strength, rw_strength, c_strength = self._parse_control(control_signal)
 
-        # extract
+        # extraction
         units = self._extract_units(answer_pool)
+
+        # build sets
         F, R, Y = self._build_sets(units)
 
         # independent inference
@@ -199,9 +293,9 @@ class Stage2Processor:
         if len(Y) == 0:
             return {}
 
-        # dynamic coupling
-        lambda_f = 0.2 + 0.5 * c_strength
-        lambda_r = 0.2 + 0.5 * c_strength
+        # adaptive coupling
+        lambda_f = 0.2 + 0.6 * c_strength
+        lambda_r = 0.2 + 0.6 * c_strength
         lambda_y = 0.3 + 0.7 * c_strength
 
         inf_F = self._cross_influence(Y, wy, F)

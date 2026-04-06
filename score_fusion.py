@@ -5,10 +5,9 @@
 @Project:     Structured Reasoning Aggregation
 @File:        score_fusion.py
 @Author:      Rui Xu
-@Contact:     zaicyxu@gmail.com
 @Time:        Mar/2026
-@Version:     0.3.2
-@Description: Evaluation-driven Signal Projection and Reliability-Quality Fusion with Full Signal Preservation
+@Version:     0.4.2
+@Description: Stable Evaluation-driven Signal Projection and Reliability-Quality Fusion
 """
 
 import numpy as np
@@ -16,61 +15,50 @@ import json
 
 
 class Stage3Processor:
+    """
+    Stage3:
+    - LLM-based evaluation (Z)
+    - Signal projection (quality)
+    - Reliability-quality fusion
+    - Full signal preservation
+    """
+
     def __init__(self, llm_call):
-        """
-        Initialize Stage3 processor.
-        """
         self.llm_call = llm_call
 
+    # Prompt
     def _build_prompt(self, answer):
         """
-        Construct the evaluation prompt.
+        Construct strict evaluation prompt.
         """
-        prompt = f"""
-                You are an expert evaluator.
+        return f"""
+        You are an expert evaluator.
 
-                Evaluate the following answer based on FOUR criteria:
+        Evaluate the following answer based on FOUR criteria:
 
-                1. Validity (0-5)
-                - 5: Fully factually correct
-                - 3: Mostly correct with minor errors
-                - 1: Major factual issues
-                - 0: Completely incorrect
+        1. Validity (0-5)
+        2. Completeness (0-5)
+        3. Consistency (0-5)
+        4. Utility (0-5)
 
-                2. Completeness (0-5)
-                - 5: Fully addresses the question
-                - 3: Partially complete
-                - 1: Missing key parts
-                - 0: Severely incomplete
+        Answer:
+        \"\"\"{answer}\"\"\"
 
-                3. Consistency (0-5)
-                - 5: Fully logically consistent
-                - 3: Minor inconsistencies
-                - 1: Major contradictions
-                - 0: Completely inconsistent
+        Output ONLY JSON:
+        {{
+          "validity": int,
+          "completeness": int,
+          "consistency": int,
+          "utility": int
+        }}
+        """
 
-                4. Utility (0-5)
-                - 5: Highly useful and actionable
-                - 3: Moderately useful
-                - 1: Limited usefulness
-                - 0: Not useful
 
-                Answer:
-                \"\"\"{answer}\"\"\"
-
-                Output ONLY JSON in the format:
-                {{
-                  "validity": int,
-                  "completeness": int,
-                  "consistency": int,
-                  "utility": int
-                }}
-                """
-        return prompt
-
+    # LLM evaluation
     def _evaluate(self, candidates):
         """
-        Evaluate all candidate answers using the LLM.
+        Generate evaluation signals Z using LLM.
+        Includes safety parsing and clamping.
         """
         Z = []
 
@@ -81,30 +69,34 @@ class Stage3Processor:
             try:
                 z = json.loads(response)
             except:
-                # Fallback ensures robustness if LLM output is malformed
-                z = {
-                    "validity": 0,
-                    "completeness": 0,
-                    "consistency": 0,
-                    "utility": 0
-                }
+                z = {}
 
-            Z.append(z)
+            # safe parsing + clamp
+            z_clean = {
+                "validity": int(np.clip(z.get("validity", 0), 0, 5)),
+                "completeness": int(np.clip(z.get("completeness", 0), 0, 5)),
+                "consistency": int(np.clip(z.get("consistency", 0), 0, 5)),
+                "utility": int(np.clip(z.get("utility", 0), 0, 5)),
+            }
+
+            Z.append(z_clean)
 
         return Z
 
+    # Softmax
     def _softmax(self, w):
         """
-        Normalize raw weights into a probability distribution.
+        Normalize weights into probability distribution.
         """
         w = np.array(w)
         w = w - np.max(w)
         e = np.exp(w)
-        return e / np.sum(e)
+        return e / (np.sum(e) + 1e-8)
 
+    # Signal projection
     def _project(self, z):
         """
-        Project multi-dimensional evaluation signal into scalar quality score.
+        Convert multi-dimensional signal into scalar quality.
         """
         vec = np.array([
             z["validity"],
@@ -113,27 +105,28 @@ class Stage3Processor:
             z["utility"]
         ]) / 5.0
 
-        # uncertainty estimation
+        # uncertainty
         uncertainty = np.var(vec)
 
-        # weighted aggregation
+        # weighted sum
         W = np.array([0.3, 0.25, 0.25, 0.2])
-        base_score = np.dot(W, vec)
+        base = np.dot(W, vec)
 
-        # non-linear transformation
-        score = np.tanh(base_score)
+        # sigmoid projection (better than tanh here)
+        q = 1 / (1 + np.exp(-4 * (base - 0.5)))
 
-        # penalize uncertainty
-        score = score * (1 - uncertainty)
+        # uncertainty penalty
+        q = q * (1 - uncertainty)
 
-        return score, uncertainty
+        # clamp
+        q = float(np.clip(q, 1e-6, 1.0))
+        return q, float(uncertainty)
 
+    # Fusion
     def _aggregate(self, W, Z):
         """
-        Fuse reliability weights and quality signals.
-
-        This implements multiplicative fusion:
-        score = w^alpha * q^beta
+        Reliability-quality fusion in log-space.
+        score = exp(alpha log w + beta log q)
         """
         scores = []
         qualities = []
@@ -145,7 +138,9 @@ class Stage3Processor:
         for w, z in zip(W, Z):
             q, u = self._project(z)
 
-            score = (w ** alpha) * (q ** beta)
+            # log-space fusion (numerically stable)
+            log_score = alpha * np.log(w + 1e-8) + beta * np.log(q + 1e-8)
+            score = np.exp(log_score)
 
             scores.append(score)
             qualities.append(q)
@@ -153,9 +148,10 @@ class Stage3Processor:
 
         return np.array(scores), qualities, uncertainties
 
+    # Ranking
     def _rank(self, candidates, scores, W, Z, Q, U, top_k=3):
         """
-        Rank candidates and preserve full signal information.
+        Rank answers and preserve full signal trace.
         """
         idx = np.argsort(scores)[::-1]
 
@@ -172,18 +168,24 @@ class Stage3Processor:
 
         return full[:top_k], full
 
+    # Main pipeline
     def process(self, candidates, weights):
         """
-        Execute full Stage3 pipeline.
+        Execute Stage3 pipeline.
         """
         if len(candidates) == 0:
             return {}
 
+        # normalize reliability
         W = self._softmax(weights)
+
+        # LLM evaluation
         Z = self._evaluate(candidates)
 
+        # fusion
         scores, Q, U = self._aggregate(W, Z)
 
+        # ranking
         topk, full = self._rank(candidates, scores, W, Z, Q, U)
 
         return {
@@ -191,6 +193,8 @@ class Stage3Processor:
             "full": full,
             "global": {
                 "weights": W.tolist(),
-                "signals": Z
+                "signals": Z,
+                "qualities": Q,
+                "uncertainties": U
             }
         }
