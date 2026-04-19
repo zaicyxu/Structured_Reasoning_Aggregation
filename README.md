@@ -160,55 +160,28 @@ All stages have been **individually implemented with modular design**:
 
 ###  In Progress
 
-####  1. Experimental Design
+#### 1. Experimental Design (2026 Evaluation Suite)
 
-A systematic evaluation framework is still under construction.
+To evaluate the SRA framework's cross-domain reasoning capabilities and its resistance to data contamination, we conduct experiments on three high-difficulty benchmarks from 2025/2026:
 
-Planned experiments include:
+#### A. Multi-Domain Benchmarks
+1. **Mathematical Logic (GRE Quantitative 2025)**
+   - **Source:** Collected 50 high-difficulty problems from the 2025 GRE General Test (Quantitative Reasoning).
+   - **Challenge:** Tests computational precision and multi-step chain-of-thought (CoT) stability.
 
+2. **Formal Analytical Reasoning (LSAT 2025)**
+   - **Source:** [LSAC Official Prep 2025 - Test 90+](https://www.lsac.org/document-library/909)
+   - **Challenge:** Tests formal logic, conditional constraints, and complex deductive structures.
+
+3. **Professional Medical Domain (NMEC 2025)**
+   - **Source:** [2025 Chinese National Medical Licensing Examination (临床执业医师资格考试)](https://ylws.huatu.com/yszg_shiti/)
+   - **Method:** 50 problems collected from authoritative sources (e.g., Huatu Education), to test professional diagnostic reasoning.
+
+#### B. Rationales for Domain Selection
+- **LSAT (Formal Logic):** Validates the framework's ability to handle symbolic relationships without lexical noise.
+- **GRE (Math):** Evaluates the "step-wise" error correction during numerical reasoning.
+- **Medical (Heuristic):** Tests the aggregation of "weak signals" (symptoms) into a definitive conclusion (diagnosis) in an expert-knowledge context.
 ---
-
-###  A. Baseline Comparison
-
-Compare against:
-
-* Single LLM (GPT / Gemini)
-* Single prompt
-* Self-consistency
-* Majority voting
-
----
-
-###  B. Ablation Study
-
-Remove components to measure impact:
-
-| Component    | Expected Effect         |
-| ------------ | ----------------------- |
-| No Stage2    | Loss of structure       |
-| No rejection | More noise              |
-| No reweight  | No reliability modeling |
-| No Stage3    | No quality filtering    |
-| No Stage4    | No adaptability         |
-
----
-
-###  C. Metric Design
-
-Evaluation metrics:
-
-* Accuracy / Exact Match
-* Logical Consistency Score
-* Factual Correctness
-* Calibration (confidence vs correctness)
-
----
-
-###  D. Stability Analysis
-
-* Variance across runs
-* Sensitivity to temperature
-* Robustness to adversarial prompts
 
 ---
 
