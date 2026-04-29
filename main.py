@@ -6,8 +6,8 @@
 @File:        main.py
 @Author:      Rui Xu
 @Time:        Mar/2026
-@Version:     0.2.3
-@Description: Full Pipeline Orchestration
+@Version:     0.3.3
+@Description: Full Pipeline Orchestration (Decoupled & Self-contained Stages)
 """
 
 from rea_fuser import Stage1Generator
@@ -26,13 +26,13 @@ class Pipeline:
     - Maintain clean data flow
     """
 
-    def __init__(self, llm_call):
+    def __init__(self):
         """
-        Initialize all stages.
+        Initialize all stages. Each stage now manages its own LLM calls.
         """
         self.stage1 = Stage1Generator()
-        self.stage2 = Stage2Processor(llm_call)
-        self.stage3 = Stage3Processor(llm_call)
+        self.stage2 = Stage2Processor()
+        self.stage3 = Stage3Processor()
         self.stage4 = Stage4Controller()
 
     def run(self, query, iterations=1):
@@ -42,16 +42,16 @@ class Pipeline:
         control_signal = None  # cold start
         for step in range(iterations):
 
-            print(f"\n Iteration {step+1}")
+            print(f"\n Iteration {step + 1}")
 
-            # Stage1: Candidate Generation
+            # Stage1: Candidate Generation (Self-contained)
             print("\n[Stage1] Generating candidates...")
             answer_pool = self.stage1.generate(query, control_signal)
 
             # extract candidate answers
             candidates = [item["answer"] for item in answer_pool]
 
-            # Stage2: Structured Inference
+            # Stage2: Structured Inference (Self-contained)
             print("[Stage2] Running structured inference...")
             stage2_output = self.stage2.process(answer_pool, control_signal)
 
@@ -62,7 +62,7 @@ class Pipeline:
             # weights for Stage3
             weights = stage2_output["result_weights"]
 
-            # Stage3: Evaluation + Ranking
+            # Stage3: Evaluation + Ranking (Self-contained)
             print("[Stage3] Evaluating and ranking...")
             stage3_output = self.stage3.process(candidates, weights)
 
@@ -90,23 +90,22 @@ class Pipeline:
 
 # ENTRY POINT
 if __name__ == "__main__":
-    def llm_call(prompt):
-        """
-        Unified LLM interface.
-        """
-        raise NotImplementedError("Please implement llm_call function.")
-
-    pipeline = Pipeline(llm_call)
+    pipeline = Pipeline()
     query = input("Enter your question:\n> ")
+
+    # Run the orchestrated pipeline
     results = pipeline.run(query, iterations=1)
-    print("\n FINAL RESULT:")
+
+    print("\n" + "=" * 30)
+    print(" FINAL RESULT:")
+    print("=" * 30)
 
     if results:
         ranking = results["stage3"]["ranking"]
         for i, item in enumerate(ranking):
-            print(f"\nTop {i+1}:")
+            print(f"\nTop {i + 1}:")
             print("Answer:", item["answer"])
-            print("Score:", item["score"])
-            print("Weight:", item["weight"])
-            print("Quality:", item["quality"])
-            print("Uncertainty:", item["uncertainty"])
+            print("Score:", f"{item['score']:.4f}")
+            print("Weight:", f"{item['weight']:.4f}")
+            print("Quality:", f"{item['quality']:.4f}")
+            print("Uncertainty:", f"{item['uncertainty']:.4f}")

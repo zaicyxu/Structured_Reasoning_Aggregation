@@ -1,0 +1,602 @@
+[
+    {
+      "number": 1,
+      "passage": "Critic: While the political message in this short story is interesting enough that the author could have based an essay, or a different short story, around that message alone, it should not have been included in this story. The story's primary focus is humor, and the political message distracts from the story's humorous effect.",
+      "question": "Which one of the following principles, if valid, most strongly supports the critic's reasoning?",
+      "options": {
+        "A": "Authors should not convey political messages in their short stories.",
+        "B": "Nothing in a short story should distract from the story's primary focus.",
+        "C": "Writers should not risk alienating readers who disagree with them politically.",
+        "D": "Political messages need to be developed differently in essays than in short stories.",
+        "E": "A short story's political message is irrelevant to its artistic merit."
+      }
+    },
+    {
+      "number": 2,
+      "passage": "Entertainment reporter: Unlike most major motion pictures, the release of the upcoming film Escapade II has not been preceded by free, advance screenings that show the film to select audiences for promotional purposes. With movie research showing awareness of the film at 96 percent, and with around 60 percent of filmgoers indicating \"definite interest\" in the film, the film's distributors must have decided not to do anything that could reduce interest in the film.",
+      "question": "The entertainment reporter's explanation for why there have been no advance screenings of Escapade II relies on assuming that the distributors believe that",
+      "options": {
+        "A": "advance screenings of Escapade II would cost them a significant amount that could much more effectively be spent on advertising",
+        "B": "advance screenings of Escapade II might lead to a dampening of the enthusiasm of filmgoers who would otherwise have an interest in seeing the film",
+        "C": "the select audiences who would normally be invited to free, advance screenings of a major motion picture would probably not enjoy Escapade II",
+        "D": "if 96 percent of the public is aware of the upcoming release of Escapade II, it is probable that 96 percent of the public intends to see the film",
+        "E": "the film Escapade II would most likely be viewed by approximately 60 percent of the public if no advance screenings are given"
+      }
+    },
+    {
+      "number": 3,
+      "passage": "Anthropology professor: The new class I'm offering has been listed in the course catalog as a literature class, but it should be listed instead as an anthropology class. The texts we will study are all novels, but we will be examining them as sources of information about different cultures. Dean: The class is listed as it should be. All the readings in the class are works of literature.",
+      "question": "The dialogue provides the most support for the claim that the anthropology professor and the dean disagree over whether",
+      "options": {
+        "A": "all of the books that will be read in the new class are novels",
+        "B": "a class can be listed as both an anthropology class and a literature class",
+        "C": "the approach taken to the readings should be a crucial determinant of how a class is listed",
+        "D": "the dean has the power to decide how a new class is to be listed",
+        "E": "an anthropology professor should be permitted to teach a literature class"
+      }
+    },
+    {
+      "number": 4,
+      "passage": "Toy manufacturer: Our competitors argue that we should withdraw our KlopperKidz toys from stores because several children have allegedly been injured by them, and manufacturers should voluntarily withdraw toys that can lead to injury. Their allegations, however, have not been proved. Furthermore, even if they were proved, our competitors argument would still not merit serious attention, because their toys have caused injuries, and they have not volunteered to withdraw them from stores.",
+      "question": "The toy manufacturer's argument is most vulnerable to the criticism that it",
+      "options": {
+        "A": "attempts to justify a conclusion by offering reasons that are mutually exclusive",
+        "B": "rejects an argument on the grounds that those making it have a vested interest in convincing people of the truth of the conclusion",
+        "C": "assumes that merely because something has not been proved to be true, it must therefore be false",
+        "D": "rejects an argument on the grounds that those making it have failed to abide by what the argument recommends",
+        "E": "takes a necessary condition for a toy's being unsafe to be a sufficient condition for its being unsafe"
+      }
+    },
+    {
+      "number": 5,
+      "passage": "Researcher: Some scholars maintain that the first government other than China to issue any form of paper currency was the Massachusetts colony in 1690. But these scholars are incorrect. During a coin shortage in New France in 1685, its government was unable to use coins to pay soldiers stationed in Quebec. Instead, playing cards were assigned an official value and issued as pay. These cards, which could be used to buy goods, were convertible to coins, which later arrived on supply ships from France.",
+      "question": "The researcher's conclusion is properly drawn if which one of the following is assumed?",
+      "options": {
+        "A": "The playing cards in use in Quebec in the late 1600s were made of paper.",
+        "B": "The Chinese government did not issue paper currency during the 1600s.",
+        "C": "Playing cards were not available to inhabitants of the Massachusetts colony before 1690.",
+        "D": "The Massachusetts colony's issue of paper currency was not prompted by a coin shortage.",
+        "E": "Every government that issued paper currency in the 1600s left records pertaining to that currency."
+      }
+    },
+    {
+      "number": 6,
+      "passage": "A tiny crab that lives 550 meters below the surface of the Gulf of Mexico has been found to have eyes that are sensitive to ultraviolet light. But ultraviolet light from the sun cannot penetrate to that depth. If the crab's ultraviolet receptors developed as an adaptation to the depths, they are probably for detecting light from bioluminescent organisms. In that case, since the crab is not itself bioluminescent, it probably hunts bioluminescent prey.",
+      "question": "Which one of the following, if true, would most weaken the argument?",
+      "options": {
+        "A": "A trait that serves no function tends to be lost over time.",
+        "B": "Prey is not plentiful at the depth at which the crabs are found.",
+        "C": "The crabs can detect each other by nonvisual means.",
+        "D": "It takes many generations to develop sensitivity to ultraviolet light.",
+        "E": "The crab's most dangerous predators are bioluminescent."
+      }
+    },
+    {
+      "number": 7,
+      "passage": "Last year a local advertising agency produced many of its television commercials in a studio with improperly installed equipment. As a result, the sound in these commercials was not perfectly synchronized with the picture; this was particularly noticeable when people were shown talking, and it even prompted complaints from some viewers. However, local automobile dealerships that relied on television commercials from this agency tended to have greater sales increases during this period than did local dealerships using television commercials from other agencies instead.",
+      "question": "Which one of the following, if true, most helps to explain the sales discrepancy described above?",
+      "options": {
+        "A": "Most viewers turned off the sound on their televisions when local automobile-dealership commercials aired during this period.",
+        "B": "People are more likely to recall a television commercial they have seen if the sound and pictures were not properly synchronized.",
+        "C": "Most of the advertisers that relied on commercials produced at the studio with improperly installed equipment were automobile dealerships.",
+        "D": "Not all of the commercials produced for automobile dealerships at this studio contained video of people talking.",
+        "E": "Most of the local automobile dealerships during this time did not rely heavily on television advertising."
+      }
+    },
+    {
+      "number": 8,
+      "passage": "Sinking large, obsolete pieces of equipment in coral areas is said to provide much-needed habitats for marine life. This, proponents say, shows that the practice is ecologically sound. However, it may be that this practice is ecologically unsound even if it does provide much-needed habitats, for the practice may upset an area's ecological balance in unknown ways.",
+      "question": "Which one of the following most accurately describes the role played in the argument by the claim that the practice of sinking large, obsolete pieces of equipment in coral areas may upset an area's ecological balance in unknown ways?",
+      "options": {
+        "A": "It is intended to be a summary of the argument.",
+        "B": "It is a claim that the argument purports to refute.",
+        "C": "It is a claim that the argument contends is insufficient to show what some have taken it to show.",
+        "D": "It is the main conclusion of the argument.",
+        "E": "It is a premise of the argument."
+      }
+    },
+    {
+      "number": 9,
+      "passage": "Having cameras at traffic intersections to automatically ticket cars that run red lights might raise revenue for municipalities but does not increase traffic safety. Accidents actually increase at intersections that have cameras: There are fewer side-impact collisions but significantly more rear-impact collisions.",
+      "question": "Which one of the following, if true, most weakens the argument?",
+      "options": {
+        "A": "The revenue raised through automatically generated tickets can be used to address issues other than traffic safety.",
+        "B": "Automatically generated tickets for running red lights have been shown to generate some undeserved tickets.",
+        "C": "Side-impact collisions are generally the fault of the driver who drives through the red light.",
+        "D": "Side-impact collisions are a much greater safety threat than rear-impact collisions.",
+        "E": "Automatically generated tickets can punish the owner of the car rather than the driver of the car at the time of the infraction."
+      }
+    },
+    {
+      "number": 10,
+      "passage": "For years, Glenville had the highest apartment rents in the metropolitan region in which it is located. This year, Glenville has only the third highest apartment rents in the region. Therefore, it must cost less to rent an apartment in Glenville now than it used to.",
+      "question": "Which one of the following arguments demonstrates most effectively by parallel reasoning that the argument above is flawed?",
+      "options": {
+        "A": "Because Brenda's kitten's veterinary bills are lower than her puppy's veterinary bills, the kitten must be healthier than the puppy.",
+        "B": "Because Brenda's kitten was larger than her puppy a while ago but is now smaller than the puppy, the kitten must have shrunk.",
+        "C": "Because Brenda's kitten was born a week before her puppy was, Brenda must have gotten the kitten first.",
+        "D": "Because Brenda's kitten eats less than her puppy does, the kitten is unlikely to become overweight.",
+        "E": "Because Brenda's kitten has become more friendly toward her puppy recently, the puppy must have become more friendly toward the kitten."
+      }
+    },
+    {
+      "number": 11,
+      "passage": "The crocodiles of Lake Victoria, in East Africa, sometimes attack humans that venture into their habitat. The number of attacks on people by these crocodiles has increased significantly in the last 20 years. This is despite the fact that the number of crocodiles in the lake has not increased in that time and the crocodiles have no less food available.",
+      "question": "Which one of the following, if true, most helps to explain the increase in the incidence of crocodile attacks on humans?",
+      "options": {
+        "A": "Wildlife authorities on Lake Victoria sometimes destroy crocodiles that they believe to be responsible for attacks on humans.",
+        "B": "About 100 crocodiles inhabit the part of Lake Victoria where most of the attacks on humans have occurred.",
+        "C": "More attacks on humans by crocodiles occur in Lake Victoria than in any other part of Africa.",
+        "D": "Adult crocodiles in Lake Victoria are generally unafraid of humans or their boats.",
+        "E": "People now fish in more parts of Lake Victoria than they did in previous decades."
+      }
+    },
+    {
+      "number": 12,
+      "passage": "When the annual period of daylight saving time begins, and clocks are set forward one hour, many people lose an hour of sleep. On the following day, according to government statistics, the incidence of traffic accidents is 7 percent greater than the average for that time of year. It is therefore likely that sleep deprivation is responsible for this spike in traffic accidents.",
+      "question": "Which one of the following, if true, most strengthens the argument?",
+      "options": {
+        "A": "Many people forget to set their clocks forward when daylight saving time begins and are late for appointments on the following day as a result.",
+        "B": "Traffic accidents are less common in the spring, when the annual period of daylight saving time begins, than they are in the winter.",
+        "C": "The traffic accidents that occur on the day after daylight saving time begins are no more severe than normal.",
+        "D": "The higher incidence of accidents is most pronounced later in the day, when sleep-deprived people tend to be most drowsy.",
+        "E": "The effects of sleep deprivation can linger for several days."
+      }
+    },
+    {
+      "number": 13,
+      "passage": "Every human's brain contains a mental representation of the external world. Yet, this representation necessarily leaves out much detail. After all, the external world is much larger and more complex than the human brain, and there is no way an object could completely represent something larger and more complex than itself.",
+      "question": "Which one of the following most accurately expresses the conclusion drawn in the argument?",
+      "options": {
+        "A": "The human brain's representation of the external world leaves out much detail.",
+        "B": "The external world is much larger and more complex than a human brain.",
+        "C": "The human brain cannot completely represent something larger and more complex than itself.",
+        "D": "The human brain contains a mental representation of the external world.",
+        "E": "It is impossible for any entity to completely represent anything larger and more complicated than itself."
+      }
+    },
+    {
+      "number": 14,
+      "passage": "Generally, open discussion of a false and pernicious idea diminishes its appeal. Even in a flourishing democracy, however, certain misconceptions are so alluring that they tend to gain in popularity when they are debated.",
+      "question": "Which one of the following principles is most clearly illustrated by the statements above?",
+      "options": {
+        "A": "Democratic governments should be allowed on occasion to suppress debate regarding certain misconceptions.",
+        "B": "Sometimes it is better to openly discuss an idea even though doing so will increase the popularity of a misconception.",
+        "C": "Not all pernicious ideas are misconceptions.",
+        "D": "Discussion and debate do not necessarily lead to a greater acceptance of the truth.",
+        "E": "One of the reasons some ideas are appealing is that they are false."
+      }
+    },
+    {
+      "number": 15,
+      "passage": "Schmidt: In enforcing township rules on how homeowners maintain their property, it is a mistake to encourage residents to report violations by their neighbors. Doing so engenders bad feelings among neighbors and leads to tips based on spite. Chandha: It's not a mistake. Without rules on how homeowners maintain their property, a single homeowner could degrade the appearance of an entire neighborhood.",
+      "question": "Chandha's response is most vulnerable to criticism on the grounds that it",
+      "options": {
+        "A": "takes a criticism of the way in which certain rules are enforced to be a criticism of the rules themselves",
+        "B": "challenges the motivation behind Schmidt's argument rather than Schmidt's reasoning",
+        "C": "confuses a criticism of the consequences of having a set of rules with a criticism of the detailed provisions of the rules",
+        "D": "takes for granted that just because something is likely to happen on some occasions, it will always happen",
+        "E": "confuses the cause of bad feelings among neighbors with a consequence of bad feelings among neighbors"
+      }
+    },
+    {
+      "number": 16,
+      "passage": "Some have argued that once it becomes necessary for us to think about computers in terms of beliefs and desires in order to understand how they function, we can rightly say that computers have beliefs and desires. However, we already need to think about what computers believe and desire in order to understand how they function, and thus the suggested criterion for ascribing beliefs and desires to computers implies that the computers that exist now have beliefs and desires. So the suggested criterion is obviously flawed.",
+      "question": "The claim that the computers that exist now have beliefs and desires plays which one of the following roles in the argument above?",
+      "options": {
+        "A": "It is held to be an unacceptable conclusion to which the suggested criterion would lead.",
+        "B": "It is a view the argument assumes is uncontroversial.",
+        "C": "It is an example given to clarify the criterion in question.",
+        "D": "It is the conclusion of the argument.",
+        "E": "It is a premise whose truth is necessary to the success of the argument."
+      }
+    },
+    {
+      "number": 17,
+      "passage": "Manufacturer: If our biggest competitor were to go out of business, some of the specialized suppliers that we both use would be bankrupted. So, in order for us to stay in business, our biggest competitor must stay in business.",
+      "question": "The conclusion drawn above follows logically if which one of the following is assumed?",
+      "options": {
+        "A": "The manufacturer's specialized suppliers will not be bankrupted.",
+        "B": "The manufacturer will stay in business if its biggest competitor stays in business.",
+        "C": "If the manufacturer goes out of business, its biggest competitor will go out of business.",
+        "D": "The manufacturer will stay in business if its specialized suppliers are not bankrupted.",
+        "E": "The manufacturer will stay in business only if its specialized suppliers are not bankrupted."
+      }
+    },
+    {
+      "number": 18,
+      "passage": "Jack's dog howls whenever a train goes by. Occasionally a train goes by while Jack is washing his dog. So Jack's dog must sometimes howl while he is washing it.",
+      "question": "The pattern of reasoning in which one of the following arguments is most similar to that in the argument above?",
+      "options": {
+        "A": "Every serious jogger can benefit from good running shoes. But there must be a few serious joggers who prefer to run in ordinary sneakers, since some people who can benefit from good running shoes prefer to run in ordinary sneakers.",
+        "B": "Most serious joggers can benefit from good running shoes. But some serious joggers prefer to run in ordinary sneakers. So some people who prefer to run in ordinary sneakers can benefit from good running shoes.",
+        "C": "Any serious jogger can benefit from good running shoes. But a few serious joggers prefer to run in ordinary sneakers. So some people who can benefit from good running shoes prefer to run in ordinary sneakers.",
+        "D": "At least some serious joggers can benefit from good running shoes. But there are serious joggers who prefer to run in ordinary sneakers. So some people who prefer to run in ordinary sneakers can benefit from good running shoes.",
+        "E": "Any serious jogger can benefit from good running shoes. But some serious joggers occasionally prefer to run in ordinary sneakers. So anyone who can benefit from good running shoes occasionally prefers to run in ordinary sneakers."
+      }
+    },
+    {
+      "number": 19,
+      "passage": "When plants are growing quickly, they take more carbon dioxide out of the atmosphere than they release into it. But when they are growing very slowly, the reverse is true. Any substantial increase in the amount of carbon dioxide released into the atmosphere causes temperatures to increase in the tropics, where the bulk of Earth's plants are found. And the more temperatures increase in the tropics, the more slowly, on average, the plants there grow.",
+      "question": "Which one of the following is most strongly supported by the information above?",
+      "options": {
+        "A": "The amount of carbon dioxide released into the atmosphere will inevitably increase at a gradually accelerating rate of speed.",
+        "B": "If the amount of carbon dioxide released into the atmosphere increases substantially, the bulk of Earth's plants will release more carbon dioxide into the atmosphere than they take out of it.",
+        "C": "Plants in the tropics will grow more slowly, on average, if they release enough carbon dioxide to increase substantially the total amount of carbon dioxide released into the atmosphere.",
+        "D": "If the plants in the tropics begin to grow more slowly, on average, the temperatures in the tropics will increase substantially as a result.",
+        "E": "Any increase in temperatures in the tropics will be associated with a substantial increase in the amount of carbon dioxide released into the atmosphere."
+      }
+    },
+    {
+      "number": 20,
+      "passage": "Essayist: Since ancient times humans have relied on myths to try to explain our place in the cosmos. In this respect the claims of science are not different from stories about the gods of Homer. The question of the truth of science, as with myth, is merely the question of how well it helps us to cope with the human condition. So while science undoubtedly can count some successes, that it falls short of complete truth is amply demonstrated by the degree to which science is responsible for the breakdown of society's key institutions.",
+      "question": "Which one of the following most accurately states the main conclusion of the essayist's argument?",
+      "options": {
+        "A": "Science is at least in part responsible for the breakdown of key institutions in society.",
+        "B": "Science is no more true than the myth of the gods of Homer.",
+        "C": "Science is only partially true.",
+        "D": "Science is merely a myth.",
+        "E": "Science, like stories about the gods of Homer, attempts to explain our place in the cosmos."
+      }
+    },
+    {
+      "number": 21,
+      "passage": "Sodium nitrate is frequently added to sausages to make them pink. However, sodium nitrate does not contribute to preventing spoilage of the meat, and excessive use of it increases the level of sodium in the sausages beyond what is necessary for good taste. Because consumption of an excessive level of sodium can lead to health problems, clearly sodium nitrate should never be added to sausages.",
+      "question": "The reasoning in the argument is most vulnerable to criticism on which one of the following grounds?",
+      "options": {
+        "A": "The argument makes a recommendation based on evidence from an insufficient sample.",
+        "B": "The argument does not address possible risks associated with the proposed recommendation.",
+        "C": "The argument presumes, without providing justification, that it is appropriate for the government to protect people from possible health threats without their consent.",
+        "D": "The argument does not provide sufficient justification for preferring the solution it recommends over more moderate alternatives.",
+        "E": "The argument does not distinguish adequately between medical and economic justifications for a policy."
+      }
+    },
+    {
+      "number": 22,
+      "passage": "For a zoo to make a valuable contribution to the community, it must be well run. All large zoos that are well run have some full-time veterinarians on staff, but many small zoos that are well run have only part-time veterinarians. In addition, there are many large zoos that make valuable contributions to their communities and are open all year, while most small zoos are closed in winter.",
+      "question": "If the statements above are true, then which one of the following must also be true?",
+      "options": {
+        "A": "Most large zoos are well run.",
+        "B": "No large, well-run zoos have any part-time veterinarians on staff.",
+        "C": "Some zoos that make valuable contributions to their communities have only part-time veterinarians on staff.",
+        "D": "Some zoos that are open all year have full-time veterinarians on staff.",
+        "E": "Most small zoos make valuable contributions to their communities."
+      }
+    },
+    {
+      "number": 23,
+      "passage": "Principal: All of our school's rural students participate in the school's lunch program because they live too far away to go home for lunch, while roughly one half of their urban counterparts also take part in the program. Some participants in this program, including some of the school's strongest academic achievers, also participate in extracurricular activities such as sports and drama. Therefore, we know that some of the participants in extracurricular activities are rural students and some are urban students.",
+      "question": "The reasoning in the principal's argument is flawed because this argument",
+      "options": {
+        "A": "takes for granted that a greater number of strong academic achievers than those who are not strong academic achievers participate in extracurricular activities",
+        "B": "takes for granted that a greater number of rural students than urban students participate in extracurricular activities",
+        "C": "ignores the possibility that those who participate both in the lunch program and in extracurricular activities do not include both urban and rural students",
+        "D": "ignores the possibility that both rural and urban students have many other ways of occupying their time besides extracurricular activities",
+        "E": "at first uses the word \"participate\" in one sense and then illicitly allows the word's meaning to change"
+      }
+    },
+    {
+      "number": 24,
+      "passage": "Principle: An author of an article that has appeared in a magazine should be allowed to respond in that magazine to harsh criticism of the article if the criticism was published in the same magazine, or, alternatively, if the criticism was published in another magazine and is unfair. Application: McFinton should be allowed to publish a response in Speculator’s Digest to Wallace’s most recent article, because Wallace’s article is harshly critical of McFinton’s essay on self-deception.",
+      "question": "Which one of the following, if true, justifies the above application of the principle?",
+      "options": {
+        "A": "McFinton’s essay on self-deception appeared in Speculator’s Digest as well as in other magazines.",
+        "B": "Wallace’s most recent article was published in Speculator’s Digest as well as in other magazines.",
+        "C": "McFinton’s essay on self-deception appeared only in Speculator’s Digest, while Wallace’s article has been published in a wide array of other magazines.",
+        "D": "Both McFinton’s essay on self-deception and Wallace’s most recent article were published in Speculator’s Digest.",
+        "E": "Wallace’s most recent article appeared in Speculator’s Digest and was unfair in its harsh criticism of McFinton’s essay on self-deception."
+      }
+    },
+    {
+      "number": 25,
+      "passage": "Paleontologist: Most biologists accept that birds evolved from dinosaurs known as maniraptors. Some biologists have not accepted this theory, because the oldest known bird fossils predate the oldest known maniraptor fossils by several million years. This reasoning is misguided, however; the fact that no maniraptor fossils of a certain age have been discovered hardly rules out the possibility that such fossils exist.",
+      "question": "The paleontologist’s argument is most vulnerable to criticism on which one of the following grounds?",
+      "options": {
+        "A": "It overlooks the possibility that even if a particular argument against a theory is misguided, that theory may nonetheless be untrue.",
+        "B": "It fails to address adequately the possibility that even if maniraptors existed before the first birds did, there may not be any maniraptor fossils older than the oldest known bird fossils.",
+        "C": "It takes for granted that if there are any maniraptor fossils older than the oldest known bird fossils, this itself proves that birds evolved from maniraptors.",
+        "D": "It overlooks the possibility that there may be substantial evidence that birds did not evolve from maniraptors, but that this evidence may be unrelated to the ages of any known or unknown bird and maniraptor fossils.",
+        "E": "It fails to address adequately the possibility that it can be reasonable to refuse to accept a theory solely on the grounds that the evidence yet discovered for the theory appears to be insufficient."
+      }
+    },
+    {
+      "number": 26,
+      "passage": "Parikh: Jon has at least three unpaid parking tickets, so it’s clear that he has no respect for the law. Atler: Although Jon does have too many unpaid parking tickets, these few minor infractions indicate nothing more than that he might be lazy or careless.",
+      "question": "The dialogue provides the most support for the claim that Parikh and Atler disagree over whether there is evidence that Jon",
+      "options": {
+        "A": "has at least three unpaid parking tickets",
+        "B": "has no respect for the law",
+        "C": "has committed a few minor infractions",
+        "D": "has too many unpaid parking tickets",
+        "E": "might be lazy or careless"
+      }
+    },
+    {
+      "number": 27,
+      "passage": "The nests inhabited by wood rats often contain nibbled bay and oak leaves. Since only the oak leaves are a known food source, the bay leaves are probably placed there to act as a fumigant to reduce parasites such as fleas. This view is backed by an experiment in which some flea larvae were incubated with torn bay leaves and some with torn oak leaves. The survival rate with oak leaves was close to 100 percent, but with bay leaves just one in four larvae survived.",
+      "question": "Which one of the following, if true, most strengthens the argument?",
+      "options": {
+        "A": "Wood rats that live near oak trees almost invariably have oak leaves in their nests.",
+        "B": "Wood rats are the only rodents that have been found to keep nibbled bay leaves in their nests.",
+        "C": "Most wood rat nests that do not contain nibbled bay leaves are infested with fleas.",
+        "D": "Fleas more commonly live on wood rats themselves than in the nests of wood rats.",
+        "E": "Bay leaves are generally more difficult for wood rats to gather than oak leaves are."
+      }
+    },
+    {
+      "number": 28,
+      "passage": "Of all the commonly consumed foods, eggs contain the highest amount of dietary cholesterol, which contributes to people’s blood cholesterol levels. Yet when people who stop eating eggs for breakfast are monitored over the course of a year, their blood cholesterol levels are often found to increase.",
+      "question": "Which one of the following, if true, most helps to resolve the apparent discrepancy in the information above?",
+      "options": {
+        "A": "People who stop eating eggs for breakfast often replace them with foods that are even higher in dietary cholesterol.",
+        "B": "Blood cholesterol levels are influenced by many factors other than the amount of dietary cholesterol consumed.",
+        "C": "Many people who continue to eat eggs for breakfast also consume other foods high in dietary cholesterol.",
+        "D": "Some people have a genetic predisposition to high blood cholesterol levels regardless of their diet.",
+        "E": "The amount of cholesterol in a single egg is less than the recommended daily limit for most adults."
+      }
+    },
+    {
+      "number": 29,
+      "passage": "Political Scientist: Many people believe that the widespread use of social media has made political discourse more polarized. However, polarization was already increasing long before social media became popular. Furthermore, a recent study found that people who use social media are actually more likely to be exposed to political views different from their own than are people who do not use social media.",
+      "question": "Which one of the following most accurately describes the role played in the political scientist's argument by the statement that people who use social media are more likely to be exposed to political views different from their own?",
+      "options": {
+        "A": "It is a premise offered in support of the argument's main conclusion.",
+        "B": "It is the main conclusion of the argument.",
+        "C": "It is a claim that the argument is designed to refute.",
+        "D": "It is a finding that the political scientist argues is misleading.",
+        "E": "It is an observation that contradicts the argument's main conclusion."
+      }
+    },
+    {
+      "number": 30,
+      "passage": "Architect: Modern buildings are often criticized for being cold and sterile. But this is a misunderstanding of the minimalist aesthetic. Minimalism is not about a lack of feeling; it is about stripping away the unnecessary to reveal the essential beauty of structure and material. When done correctly, a minimalist building can be deeply moving.",
+      "question": "The architect's argument proceeds by",
+      "options": {
+        "A": "redefining a term that is central to the critics' argument",
+        "B": "providing a counterexample to the critics' generalization",
+        "C": "arguing that the critics' premise is actually false",
+        "D": "suggesting that the critics are biased",
+        "E": "claiming that the critics' conclusion does not follow from their premises"
+      }
+    },
+    {
+      "number": 31,
+      "passage": "Ethicist: Some people argue that we have a moral obligation to help others only if we can do so without significant cost to ourselves. But this cannot be right. If we saw a child drowning in a shallow pond, we would all agree that we have an obligation to save the child, even if it meant ruining our expensive clothes. Ruining expensive clothes is a significant cost, yet the obligation remains.",
+      "question": "The ethicist's argument relies on which one of the following techniques?",
+      "options": {
+        "A": "using an analogy to challenge a general principle",
+        "B": "showing that a principle leads to a contradiction",
+        "C": "appealing to the authority of common sense",
+        "D": "arguing that a cost is not actually significant",
+        "E": "claiming that the opponents' position is based on a misunderstanding"
+      }
+    },
+    {
+      "number": 32,
+      "passage": "Biologist: The population of monarch butterflies has declined sharply in recent years. Many researchers attribute this to the loss of milkweed, the only plant on which monarch larvae feed. However, climate change is also a factor, as extreme weather events can destroy overwintering sites in Mexico. Therefore, simply planting more milkweed will not be enough to save the monarch butterfly.",
+      "question": "Which one of the following is an assumption required by the biologist's argument?",
+      "options": {
+        "A": "The loss of milkweed is not the primary cause of the decline in monarch populations.",
+        "B": "Extreme weather events in Mexico are becoming more frequent due to climate change.",
+        "C": "Protecting overwintering sites is more important than planting milkweed.",
+        "D": "Efforts to plant milkweed will not be successful unless climate change is also addressed.",
+        "E": "Climate change will continue to have a significant impact on monarch populations even if milkweed is restored."
+      }
+    },
+    {
+      "number": 33,
+      "passage": "Consumer Advocate: The new safety regulations for children's toys are a step in the right direction, but they don't go far enough. While they ban certain hazardous chemicals, they allow others that have been shown to be harmful in animal studies. Manufacturers argue that the levels of these chemicals in toys are too low to pose a risk to children, but we should apply the precautionary principle and ban them entirely.",
+      "question": "The consumer advocate's argument most closely conforms to which one of the following principles?",
+      "options": {
+        "A": "New regulations should always be more stringent than the ones they replace.",
+        "B": "Any chemical that is harmful to animals should be assumed to be harmful to humans.",
+        "C": "If there is evidence that a substance might be harmful, it should be banned even if the risk is not fully proven.",
+        "D": "Manufacturers should be required to prove that their products are safe before they are allowed on the market.",
+        "E": "The safety of children should take precedence over the profits of toy manufacturers."
+      }
+    },
+    {
+      "number": 34,
+      "passage": "Historian: It is often said that the invention of the printing press was the primary cause of the Reformation. While the printing press certainly facilitated the spread of new ideas, it would not have had such a profound impact if there hadn't already been widespread dissatisfaction with the Church. Thus, the printing press was a necessary but not a sufficient condition for the Reformation.",
+      "question": "Which one of the following most accurately expresses the historian's main conclusion?",
+      "options": {
+        "A": "The printing press was not the primary cause of the Reformation.",
+        "B": "Dissatisfaction with the Church was the most important factor in the Reformation.",
+        "C": "The Reformation would not have occurred without the printing press.",
+        "D": "The impact of the printing press has been exaggerated by most historians.",
+        "E": "The printing press and dissatisfaction with the Church were both required for the Reformation to happen."
+      }
+    },
+    {
+      "number": 35,
+      "passage": "Linguist: Some languages have words for concepts that are untranslatable into other languages. For example, the German word 'Schadenfreude' refers to the pleasure derived from someone else's misfortune. Because some concepts are unique to certain languages, speakers of those languages must perceive the world differently than speakers of other languages.",
+      "question": "The linguist's reasoning is most vulnerable to criticism on the grounds that it",
+      "options": {
+        "A": "takes for granted that the existence of a unique word implies a unique perception",
+        "B": "fails to consider that 'untranslatable' words can often be explained using phrases in other languages",
+        "C": "assumes that all speakers of a language perceive the world in the same way",
+        "D": "ignores the possibility that concepts can exist without being labeled by a specific word",
+        "E": "provides only one example to support a very broad conclusion"
+      }
+    },
+    {
+      "number": 36,
+      "passage": "Economist: The government's plan to increase the minimum wage will lead to higher unemployment. When the cost of labor increases, businesses respond by cutting jobs or reducing hours for existing employees. While some workers will benefit from higher pay, many others will lose their livelihoods entirely.",
+      "question": "Which one of the following, if true, most weakens the economist's argument?",
+      "options": {
+        "A": "Higher wages can lead to increased consumer spending, which stimulates the economy and creates jobs.",
+        "B": "Most businesses that pay minimum wage are in the service sector and cannot easily automate jobs.",
+        "C": "The proposed increase in the minimum wage is relatively small and will be phased in over several years.",
+        "D": "Many workers who earn the minimum wage are not the primary breadwinners in their households.",
+        "E": "The unemployment rate is already at a historic low, and many businesses are struggling to find workers."
+      }
+    },
+    {
+      "number": 37,
+      "passage": "Psychologist: A study of high-achieving individuals found that they are much more likely to have experienced significant adversity in childhood than the general population. This suggests that the resilience developed through overcoming early challenges is a key factor in later success.",
+      "question": "The psychologist's conclusion follows logically if which one of the following is assumed?",
+      "options": {
+        "A": "Resilience can only be developed through childhood adversity.",
+        "B": "High-achieving individuals would not have been as successful if they hadn't faced childhood adversity.",
+        "C": "Childhood adversity does not prevent most people from achieving success later in life.",
+        "D": "The adversity experienced by these individuals actually caused them to develop resilience.",
+        "E": "Resilience is the most important factor in determining an individual's level of achievement."
+      }
+    },
+    {
+      "number": 38,
+      "passage": "City Planner: We should replace the old bridge with a tunnel instead of building a new bridge. While a tunnel is more expensive to build, it will require much less maintenance over its lifespan. In the long run, the tunnel will be the more cost-effective option.",
+      "question": "Which one of the following, if true, most strengthens the city planner's argument?",
+      "options": {
+        "A": "The current bridge is in such poor condition that it must be replaced within the next two years.",
+        "B": "The cost of maintaining a bridge increases significantly as the bridge gets older.",
+        "C": "The technology for building tunnels has improved significantly and is now more reliable than it used to be.",
+        "D": "A tunnel would cause less disruption to local traffic during the construction phase than a new bridge would.",
+        "E": "The lifespan of a tunnel is estimated to be twice as long as the lifespan of a new bridge."
+      }
+    },
+    {
+      "number": 39,
+      "passage": "Journalist: The mayor claims that his policies have reduced crime in the city. But the decline in crime began two years before he took office. Furthermore, crime rates have been falling in almost every major city in the country over the same period. Thus, the mayor's claim is likely false.",
+      "question": "The journalist's argument proceeds by",
+      "options": {
+        "A": "challenging the mayor's integrity",
+        "B": "showing that the mayor's policies have had unintended consequences",
+        "C": "providing evidence that the correlation the mayor cites is likely coincidental",
+        "D": "arguing that the mayor's policies have actually been counterproductive",
+        "E": "suggesting that the crime data the mayor is using is inaccurate"
+      }
+    },
+    {
+      "number": 40,
+      "passage": "Philosopher: Some people argue that artificial intelligence will eventually be able to think just like humans. But thinking requires consciousness, and consciousness is a biological phenomenon. Since AI is not biological, it can never truly think; it can only simulate thinking.",
+      "question": "The philosopher's argument is most vulnerable to the criticism that it",
+      "options": {
+        "A": "takes for granted that only biological entities can be conscious",
+        "B": "fails to define what is meant by 'simulating' thinking",
+        "C": "ignores the possibility that thinking does not require consciousness",
+        "D": "assumes that human thinking is the only valid form of thinking",
+        "E": "relies on an overly narrow definition of 'biological'"
+      }
+    },
+    {
+      "number": 41,
+      "passage": "Business Consultant: To be successful, a company must either have the lowest prices or the highest quality. Our company has neither. Therefore, we will not be successful unless we change our strategy.",
+      "question": "The pattern of reasoning in the argument above is most similar to which one of the following?",
+      "options": {
+        "A": "To get to the airport on time, you must either take a taxi or the express train. You are taking the bus, so you will be late.",
+        "B": "Anyone who wants to pass the exam must study hard or be naturally gifted. You are studying hard, so you will pass.",
+        "C": "A good meal must be either nutritious or delicious. This meal is both, so it is a very good meal.",
+        "D": "To be a great athlete, one must have talent and dedication. You have dedication but no talent, so you will not be a great athlete.",
+        "E": "The project will be finished on time only if everyone works overtime. Not everyone is working overtime, so the project will be late."
+      }
+    },
+    {
+      "number": 42,
+      "passage": "Environmentalist: The use of plastic straws should be banned because they are a major source of ocean pollution. While they only make up a small percentage of total plastic waste, they are particularly harmful to marine animals, who often mistake them for food.",
+      "question": "Which one of the following, if true, most weakens the environmentalist's argument?",
+      "options": {
+        "A": "Many people with disabilities rely on plastic straws to drink safely.",
+        "B": "Most plastic waste in the ocean comes from discarded fishing gear rather than consumer products.",
+        "C": "Alternative straws made of paper or metal are more expensive than plastic straws.",
+        "D": "Plastic straws can be recycled if they are collected and processed correctly.",
+        "E": "The ban on plastic straws would have a negligible impact on the overall amount of plastic in the ocean."
+      }
+    },
+    {
+      "number": 43,
+      "passage": "Art Critic: The latest exhibition at the gallery is a failure. The paintings are technically proficient, but they lack any emotional depth. Great art must be able to evoke a strong response in the viewer, and these works leave me completely cold.",
+      "question": "Which one of the following most accurately describes the role played in the art critic's argument by the statement that great art must be able to evoke a strong response in the viewer?",
+      "options": {
+        "A": "It is a premise used to support the conclusion that the exhibition is a failure.",
+        "B": "It is the main conclusion of the argument.",
+        "C": "It is a definition of 'great art' that the critic is challenging.",
+        "D": "It is an observation about the viewer's reaction to the paintings.",
+        "E": "It is a general principle that the critic is trying to prove."
+      }
+    },
+    {
+      "number": 44,
+      "passage": "Medical Researcher: A new study found that people who drink green tea regularly have a lower risk of heart disease. This is likely because green tea contains high levels of antioxidants, which are known to protect the heart.",
+      "question": "Which one of the following, if true, most strengthens the researcher's argument?",
+      "options": {
+        "A": "Other beverages that contain antioxidants have also been shown to reduce the risk of heart disease.",
+        "B": "People who drink green tea also tend to have healthier diets and exercise more regularly.",
+        "C": "The study included a large and diverse group of participants from different countries.",
+        "D": "Green tea has been used in traditional medicine for centuries to treat various ailments.",
+        "E": "The researchers found a direct correlation between the amount of green tea consumed and the level of antioxidants in the blood."
+      }
+    },
+    {
+      "number": 45,
+      "passage": "Sociologist: The increase in the number of people working from home has led to a decline in the sense of community in many neighborhoods. When people commute to an office, they interact with their neighbors and local business owners during the day. Without these daily interactions, social ties are weakened.",
+      "question": "The sociologist's argument is most vulnerable to the criticism that it",
+      "options": {
+        "A": "ignores the possibility that people who work from home might find other ways to interact with their community",
+        "B": "takes for granted that interactions at an office are more meaningful than interactions at home",
+        "C": "fails to provide data on the number of people who have transitioned to working from home",
+        "D": "assumes that a sense of community is necessary for a healthy society",
+        "E": "relies on an anecdotal evidence rather than a systematic study"
+      }
+    },
+    {
+      "number": 46,
+      "passage": "Legal Scholar: The law should be interpreted according to the original intent of its authors. If we allow judges to reinterpret the law based on modern values, the law becomes unpredictable and loses its authority.",
+      "question": "Which one of the following, if valid, most strongly supports the legal scholar's position?",
+      "options": {
+        "A": "The authors of most laws intended for them to be adapted to changing circumstances.",
+        "B": "Predictability is a fundamental requirement for a fair and effective legal system.",
+        "C": "Judges are often better equipped to understand modern values than the original authors of the law.",
+        "D": "The original intent of a law is often difficult or impossible to determine with certainty.",
+        "E": "Reinterpreting the law is the only way to ensure that it remains relevant in a rapidly changing world."
+      }
+    },
+    {
+      "number": 47,
+      "passage": "Marketing Executive: Our new ad campaign was a huge success. Sales increased by 20 percent in the month following the campaign. This proves that the campaign was effective in reaching our target audience.",
+      "question": "The marketing executive's reasoning is flawed because it",
+      "options": {
+        "A": "ignores the possibility that other factors might have contributed to the increase in sales",
+        "B": "takes for granted that the 20 percent increase is statistically significant",
+        "C": "assumes that reaching the target audience is the only measure of an ad campaign's success",
+        "D": "fails to provide a comparison with the sales of the company's competitors",
+        "E": "relies on a single data point to draw a broad conclusion"
+      }
+    },
+    {
+      "number": 48,
+      "passage": "Nutritionist: Many people believe that taking vitamin supplements is a good way to improve their health. However, most people get all the vitamins they need from a balanced diet. Furthermore, some studies suggest that high doses of certain vitamins can actually be harmful.",
+      "question": "Which one of the following most accurately expresses the main point of the nutritionist's argument?",
+      "options": {
+        "A": "Most people do not need to take vitamin supplements.",
+        "B": "A balanced diet is the best way to get essential vitamins.",
+        "C": "Vitamin supplements can be harmful if taken in high doses.",
+        "D": "The belief that vitamin supplements improve health is a common misconception.",
+        "E": "People should consult a doctor before starting any vitamin supplement regimen."
+      }
+    },
+    {
+      "number": 49,
+      "passage": "Physics Professor: Some students find quantum mechanics difficult to understand because it defies their everyday intuition. However, just because a theory is counterintuitive doesn't mean it's wrong. In fact, quantum mechanics is one of the most successful and well-tested theories in the history of science.",
+      "question": "The physics professor's argument is directed against which one of the following views?",
+      "options": {
+        "A": "Quantum mechanics is too difficult for most students to learn.",
+        "B": "Scientific theories should always be intuitive.",
+        "C": "A theory's lack of intuitiveness is evidence against its truth.",
+        "D": "Intuition is a reliable guide to understanding the physical world.",
+        "E": "Quantum mechanics has not been sufficiently tested."
+      }
+    },
+    {
+      "number": 50,
+      "passage": "Detective: The suspect claims he was at the movies at the time of the robbery. But the movie he claims to have seen wasn't playing that night. Furthermore, his car was seen near the scene of the crime around the time the robbery occurred. Therefore, the suspect's alibi is false and he is likely guilty.",
+      "question": "The detective's argument is most vulnerable to criticism on the grounds that it",
+      "options": {
+        "A": "assumes that if an alibi is false, the person must be guilty",
+        "B": "fails to consider the possibility that someone else was driving the suspect's car",
+        "C": "ignores the possibility that the suspect was at a different movie theater",
+        "D": "relies on eyewitness testimony, which is often unreliable",
+        "E": "takes for granted that the robbery occurred at the time the police believe it did"
+      }
+    }
+  ]

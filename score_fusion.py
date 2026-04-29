@@ -12,6 +12,8 @@
 
 import numpy as np
 import json
+import requests
+from configuration import Config
 
 
 class Stage3Processor:
@@ -23,8 +25,39 @@ class Stage3Processor:
     - Full signal preservation
     """
 
-    def __init__(self, llm_call):
-        self.llm_call = llm_call
+    def __init__(self):
+        """
+        Initialize Stage3 with internal Gemini configuration from Config.
+        """
+        self.base_url = Config.BASE_URL
+        self.api_keys = Config.API_KEYS
+        self.models = Config.MODELS
+        self.temperature = Config.TEMPERATURE
+        self.max_tokens = Config.MAX_TOKENS
+
+    def _call_model(self, prompt):
+        """
+        Internal LLM call logic using Gemini configuration.
+        """
+        model_key = "gemini"
+        url = f"{self.base_url}/chat/completions"
+        headers = {
+            "Authorization": f"Bearer {self.api_keys[model_key]}",
+            "Content-Type": "application/json"
+        }
+        payload = {
+            "model": self.models[model_key],
+            "messages": [{"role": "user", "content": prompt}],
+            "temperature": self.temperature,
+            "max_tokens": self.max_tokens
+        }
+        try:
+            response = requests.post(url, headers=headers, json=payload, timeout=60)
+            if response.status_code == 200:
+                return response.json()["choices"][0]["message"]["content"]
+            return ""
+        except Exception:
+            return ""
 
     # Prompt
     def _build_prompt(self, answer):
@@ -53,7 +86,6 @@ class Stage3Processor:
         }}
         """
 
-
     # LLM evaluation
     def _evaluate(self, candidates):
         """
@@ -61,10 +93,9 @@ class Stage3Processor:
         Includes safety parsing and clamping.
         """
         Z = []
-
         for ans in candidates:
             prompt = self._build_prompt(ans)
-            response = self.llm_call(prompt)
+            response = self._call_model(prompt)
 
             try:
                 z = json.loads(response)
@@ -78,9 +109,7 @@ class Stage3Processor:
                 "consistency": int(np.clip(z.get("consistency", 0), 0, 5)),
                 "utility": int(np.clip(z.get("utility", 0), 0, 5)),
             }
-
             Z.append(z_clean)
-
         return Z
 
     # Softmax
@@ -109,8 +138,8 @@ class Stage3Processor:
         uncertainty = np.var(vec)
 
         # weighted sum
-        W = np.array([0.3, 0.25, 0.25, 0.2])
-        base = np.dot(W, vec)
+        W_vec = np.array([0.3, 0.25, 0.25, 0.2])
+        base = np.dot(W_vec, vec)
 
         # sigmoid projection (better than tanh here)
         q = 1 / (1 + np.exp(-4 * (base - 0.5)))
